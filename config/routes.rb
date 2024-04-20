@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :sessions, only: %i[ new create ]
+  resources :users, only: %i[ show new create ]
+  get "/sign_in", to: "sessions#new", as: :sign_in
+  get "/sign_up", to: "users#new", as: :sign_up
+
+  constraints(AuthenticatedConstraint.new) do
+    resource :user, only: %i[ edit update destroy ]
+    resources :sessions, only: %i[ destroy ]
+  end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -10,5 +19,5 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "sessions#new"
 end

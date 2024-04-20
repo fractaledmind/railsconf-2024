@@ -101,12 +101,14 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     bigdecimal (3.1.7)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     brakeman (6.1.2)
       racc
+    browser (5.3.1)
     builder (3.2.4)
     capybara (3.40.0)
       addressable
@@ -303,8 +305,10 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   brakeman
+  browser (~> 5.3)
   capybara
   cssbundling-rails
   debug

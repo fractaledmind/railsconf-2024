@@ -28,4 +28,24 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  helpers:
+    submit:
+      session:
+        create: "Sign in"
+      user:
+        create: "Create account"
+        update: "Update profile"
+      comment:
+        create: "Post comment"
+  errors:
+    messages:
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"
+  activerecord:
+      errors:
+        models:
+          session:
+            attributes:
+              user:
+                required: "email or password is incorrect"
