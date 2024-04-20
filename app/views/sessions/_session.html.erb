@@ -1,0 +1,19 @@
+<li id="<%= dom_id session %>" class="">
+  <div class="flex justify-between items-center">
+    <div class="flex flex-col gap-1">
+      <div class="whitespace-nowrap">
+        <span><%= session.browser.platform.id.to_s.capitalize %></span>
+        <span><%= session.browser.id.to_s.capitalize %></span>
+        <span><%= session.browser.full_version %></span>
+        <% if session == Current.session %>
+          <small class="border border-green-500 text-green-600 px-1 py-px">active</small>
+        <% end %>
+      </div>
+      <div class="ml-4 text-sm">
+        <%= time_tag session.created_at, session.created_at.to_formatted_s(:long) %>
+      </div>
+    </div>
+
+    <%= button_to "Revoke", session, method: :delete, class: "border border-red-500 text-red-500 bg-white py-1 px-2 cursor-pointer hover:bg-red-500 hover:text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
+  </div>
+</li>

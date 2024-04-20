@@ -24,6 +24,20 @@
           Lorem News
         </a>
       </h2>
+      <div class="inline-flex items-center gap-2">
+        <% if Current.user %>
+          <span class="inline-flex items-center">
+            <svg class="-ml-0.5 mr-1.5 h-2 w-2 text-green-500" fill="currentColor" height="8" width="8" viewBox="0 0 4 4">
+              <rect width="4" height="4" />
+            </svg>
+            <span><%= link_to Current.user.screen_name_in_database, Current.user, class: "hover:underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %></span>
+          </span> |
+          <%= button_to "Sign out", Current.session, method: :delete, class: "hover:underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
+        <% else %>
+          <%= link_to "Sign in", sign_in_path, class: "hover:underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %> |
+          <%= link_to "Sign up", sign_up_path, class: "hover:underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
+        <% end %>
+      </div>
     </header>
 
     <main class="border-2 border-black bg-white px-4 py-8 relative mb-4 before:absolute before:inset-0 before:-z-10 before:transform before:translate-x-2 before:translate-y-2 before:bg-[radial-gradient(circle_at_center,#000_.05rem,transparent_0),radial-gradient(circle_at_center,#000_.05rem,transparent_0)] before:[background-size:.2rem_.2rem] before:[background-position:0_0,.1rem_.1rem] before:[background-color:initial]">
