@@ -209,10 +209,6 @@ GEM
     rake (13.2.1)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
-    redis (5.2.0)
-      redis-client (>= 0.22.0)
-    redis-client (0.22.1)
-      connection_pool
     regexp_parser (2.9.0)
     reline (0.5.2)
       io-console (~> 0.5)
@@ -316,10 +312,9 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails!
-  redis (>= 4.0.1)
   rubocop-rails-omakase
   selenium-webdriver
-  sqlite3 (>= 1.4)
+  sqlite3 (>= 2.0)
   stimulus-rails
   turbo-rails
   tzinfo-data
