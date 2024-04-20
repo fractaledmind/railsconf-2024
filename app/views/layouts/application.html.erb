@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
   <head>
     <title><%= content_for(:title) || "Lorem News" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -17,7 +17,23 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="h-full flex flex-col max-w-4xl mx-auto p-8 pb-0 font-mono">
+    <header class="flex items-center justify-between text-lg mb-12">
+      <h2>
+        <a href="/" class="bg-black text-white font-bold normal-case px-2 py-1 relative before:absolute before:inset-0 before:-z-10 before:transform before:bg-[radial-gradient(circle_at_center,#000_.05rem,transparent_0),radial-gradient(circle_at_center,#000_.05rem,transparent_0)] before:[background-size:.2rem_.2rem] before:[background-position:0_0,.1rem_.1rem] before:[background-color:initial] before:transition-transform before:ease-in before:duration-100 hover:before:translate-x-1 hover:before:translate-y-1 focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500">
+          Lorem News
+        </a>
+      </h2>
+    </header>
+
+    <main class="border-2 border-black bg-white px-4 py-8 relative mb-4 before:absolute before:inset-0 before:-z-10 before:transform before:translate-x-2 before:translate-y-2 before:bg-[radial-gradient(circle_at_center,#000_.05rem,transparent_0),radial-gradient(circle_at_center,#000_.05rem,transparent_0)] before:[background-size:.2rem_.2rem] before:[background-position:0_0,.1rem_.1rem] before:[background-color:initial]">
+      <%= yield %>
+    </main>
+
+    <footer class="mt-auto text-sm text-center">
+      <p class="py-4">
+        Made with &heartsuit; by <a href="https://twitter.com/fractaledmind" class="underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500">@fractaledmind</a> for <a href="https://railsconf.org" class="underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500">RailsConf 2024</a>
+      </p>
+    </footer>
   </body>
 </html>
