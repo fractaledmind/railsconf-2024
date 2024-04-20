@@ -2,7 +2,7 @@
 require "fileutils"
 
 APP_ROOT = File.expand_path("..", __dir__)
-APP_NAME = "railsconf_2024"
+APP_NAME = "lorem_news"
 
 def system!(*args)
   system(*args, exception: true)

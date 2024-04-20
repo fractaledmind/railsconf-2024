@@ -133,7 +133,11 @@ GEM
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
+<<<<<<< HEAD
     irb (1.13.1)
+=======
+    irb (1.13.0)
+>>>>>>> 10352fd (Setup the application)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jsbundling-rails (1.3.0)
@@ -212,10 +216,6 @@ GEM
     rake (13.2.1)
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
-    redis (5.2.0)
-      redis-client (>= 0.22.0)
-    redis-client (0.22.1)
-      connection_pool
     regexp_parser (2.9.0)
     reline (0.5.5)
       io-console (~> 0.5)
@@ -321,14 +321,13 @@ DEPENDENCIES
   propshaft
   puma (>= 5.0)
   rails!
-  redis (>= 4.0.1)
   rubocop-rails-omakase
   selenium-webdriver
-  sqlite3 (>= 1.4)
+  sqlite3 (>= 2.0)
   stimulus-rails
   turbo-rails
   tzinfo-data
   web-console
 
 BUNDLED WITH
-   2.5.6
+   2.5.10
