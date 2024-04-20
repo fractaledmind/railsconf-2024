@@ -1,0 +1,22 @@
+<div id="<%= dom_id user %>">
+  <p>
+    <strong>Screen name:</strong>
+    <%= user.screen_name %>
+  </p>
+
+  <p>
+    <strong>About:</strong>
+    <%= user.about %>
+  </p>
+
+  <p>
+    <strong>Last seen at:</strong>
+    <%= user.last_seen_at || "—" %>
+  </p>
+
+  <p>
+    <strong>Posts count:</strong>
+    <%= user.posts_count %>
+  </p>
+
+</div>

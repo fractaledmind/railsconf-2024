@@ -1,0 +1,29 @@
+<%= form_with(model: session, class: "contents") do |form| %>
+  <% if session.errors.any? %>
+    <div class="text-red-500 font-medium mb-8" role="alert">
+      <h2 class="font-black text-sm uppercase tracking flex items-center">
+        <%= I18n.t("errors.messages.not_saved", count: session.errors.count, resource: session.class.model_name.human.downcase) %>
+      </h2>
+      <ul class="list-[square] list-inside pl-4 mt-2">
+        <% session.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.fields_for :user do |fields| %>
+    <div class="flex flex-col gap-2 w-1/2 mb-8">
+      <%= fields.label :screen_name %>
+      <%= fields.text_field :screen_name %>
+    </div>
+
+    <div class="flex flex-col gap-2 w-1/2 mb-8">
+      <%= fields.label :password %>
+      <%= fields.password_field :password, required: true, autocomplete: "current-password" %>
+    </div>
+  <% end %>
+
+  <div class="inline-block">
+    <%= form.submit class: "border border-black text-black bg-white py-1 px-2 cursor-pointer hover:bg-black hover:text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
+  </div>
+<% end %>
