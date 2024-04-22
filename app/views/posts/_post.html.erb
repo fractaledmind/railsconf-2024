@@ -14,5 +14,7 @@
     <abbr title="<%= post.created_at.to_formatted_s(:long) %>" class="cursor-help">
       <%= time_tag post.created_at, time_ago_in_words(post.created_at) %> ago
     </abbr>
+    <span>&middot;</span>
+    <%= pluralize post.comments_count, "comment" %>
   </span>
 </small>
