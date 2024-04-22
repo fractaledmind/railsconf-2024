@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   constraints(AuthenticatedConstraint.new) do
     resource :user, only: %i[ edit update destroy ]
     resources :sessions, only: %i[ destroy ]
-    resources :posts, only: %i[ new create edit update destroy ]
+    resources :posts, only: %i[ new create edit update destroy ] do
+      resources :comments, only: %i[ create edit update destroy ], shallow: true
+    end
   end
 
   resources :posts, only: %i[ index show ]

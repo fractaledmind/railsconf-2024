@@ -14,6 +14,8 @@
       <span>&middot;</span>
     <% end %>
     <%= time_ago_in_words(@post.created_at) %> ago
+    <span>&middot;</span>
+    <%= link_to pluralize(@post.comments_count, "comment"), url_for(anchor: :comments), class: "hover:underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
   </span>
 </small>
 
@@ -27,5 +29,19 @@
   <div class="flex items-center gap-2">
     <%= link_to "Edit", edit_post_path(@post), class: "border border-black text-black bg-white py-1 px-2 cursor-pointer hover:bg-black hover:text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
     <%= button_to "Destroy", @post, method: :delete, class: "border border-red-500 text-red-500 bg-white py-1 px-2 cursor-pointer hover:bg-red-500 hover:text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
+  </div>
+<% end %>
+
+<br>
+<hr class="border-black border">
+<br>
+
+<% if Current.user.present? %>
+  <%= render "comments/form", comment: @post.comments.new %>
+<% end %>
+<% if @post.comments.exists? %>
+  <br />
+  <div id="comments" class="space-y-4">
+    <%= render @post.comments.order(created_at: :desc) %>
   </div>
 <% end %>

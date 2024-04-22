@@ -16,5 +16,7 @@
       <span>&middot;</span>
     <% end %>
     <%= time_ago_in_words(post.created_at) %> ago
+    <span>&middot;</span>
+    <%= pluralize post.comments_count, "comment" %>
   </span>
 </small>
