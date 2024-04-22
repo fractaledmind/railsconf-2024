@@ -1,0 +1,31 @@
+<h1 class="absolute -top-4 py-px px-2 -mx-2 uppercase font-bold text-lg">
+  <%= @post.title %>
+</h1>
+<%= link_to "&larr; Back to posts".html_safe, posts_path, class: "absolute -top-4 right-4 py-px px-2 -mx-2 border-2 border-transparent hover:border-black focus:outline-none focus:ring focus:ring-offset-0 focus:ring-blue-500" %>
+
+<small class="absolute top-4 text-sm font-normal inline-flex items-baseline justify-between">
+  <span>
+    <% if controller_name == "posts" %>
+      by <% if @post.user == Current.user %>
+        you
+      <% else %>
+        <%= link_to @post.user.screen_name, user_path(@post.user), class: "hover:underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
+      <% end %>
+      <span>&middot;</span>
+    <% end %>
+    <%= time_ago_in_words(@post.created_at) %> ago
+  </span>
+</small>
+
+<div class="mt-8 prose max-w-none text-black">
+  <%= simple_format @post.description %>
+</div>
+
+<% if @post.user == Current.user %>
+  <br>
+
+  <div class="flex items-center gap-2">
+    <%= link_to "Edit", edit_post_path(@post), class: "border border-black text-black bg-white py-1 px-2 cursor-pointer hover:bg-black hover:text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
+    <%= button_to "Destroy", @post, method: :delete, class: "border border-red-500 text-red-500 bg-white py-1 px-2 cursor-pointer hover:bg-red-500 hover:text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
+  </div>
+<% end %>

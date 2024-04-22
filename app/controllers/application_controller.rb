@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   allow_browser versions: { safari: 17.0, chrome: 119, firefox: 121, opera: 104, ie: false }
   before_action :ensure_user_authenticated!
 
+  NotAuthorized = Class.new(StandardError)
+
   private
 
     def sign_in(user:)

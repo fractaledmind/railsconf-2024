@@ -4,6 +4,20 @@
 
 <%= render @user %>
 
+<br>
+
+<details open>
+  <summary class="cursor-pointer">
+    <strong>Posts:</strong>
+    <%= @user.posts.size %>
+  </summary>
+  <ul class="list-none space-y-4">
+    <% @user.posts.order(created_at: :desc).each do |post| %>
+      <li><%= render post %></li>
+    <% end %>
+  </ul>
+</details>
+
 <% if @user == Current.user %>
   <details>
     <summary>

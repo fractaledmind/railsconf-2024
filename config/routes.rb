@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   constraints(AuthenticatedConstraint.new) do
     resource :user, only: %i[ edit update destroy ]
     resources :sessions, only: %i[ destroy ]
+    resources :posts, only: %i[ new create edit update destroy ]
   end
+
+  resources :posts, only: %i[ index show ]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -19,5 +22,5 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  root "sessions#new"
+  root "posts#index"
 end
