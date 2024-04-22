@@ -1,0 +1,18 @@
+<div>
+  <% if controller_name == "posts" && action_name == "show" %>
+    <%= post.title %>
+  <% else %>
+    <%= link_to post.title, post, class: "hover:underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
+  <% end %>
+</div>
+<small class="text-sm font-normal inline-flex items-baseline justify-between">
+  <span>
+    <% if controller_name == "posts" %>
+      by <%= link_to (post.user == Current.user ? "you" : post.user.screen_name), user_path(post.user), class: "hover:underline focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
+      <span>&middot;</span>
+    <% end %>
+    <abbr title="<%= post.created_at.to_formatted_s(:long) %>" class="cursor-help">
+      <%= time_tag post.created_at, time_ago_in_words(post.created_at) %> ago
+    </abbr>
+  </span>
+</small>

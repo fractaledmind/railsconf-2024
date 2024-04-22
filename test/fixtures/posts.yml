@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  title: Voluptatem id sequi cupiditate dignissimos
+  description: Curabitur cursus semper condimentum. Mauris quis tincidunt magna. Nulla suscipit, ex at rhoncus consectetur, eros lectus auctor arcu, non consequat arcu eros quis tellus. Nunc posuere erat vel nisl eleifend, ac faucibus ipsum molestie. Integer venenatis, velit quis lacinia vestibulum, lacus magna sagittis diam, vel dignissim neque purus quis eros. Ut eu mi eu risus placerat porttitor. Aenean vel lacus eros. Duis placerat gravida arcu elementum viverra. Sed dapibus tellus sed eros efficitur, vitae semper dui eleifend. Phasellus aliquet euismod enim vitae rutrum. Nullam pharetra rutrum eros ac hendrerit. Etiam vel sem eu dui viverra tincidunt sit amet eu libero. Integer vitae sapien ex. Proin luctus leo cursus feugiat euismod. Nulla a nibh vitae quam blandit elementum.
+  published_at: 2024-04-03 08:42:25
+  comments_count: 0
+
+two:
+  user: two
+  title: Assumenda sed
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nibh neque, tempus non varius quis, imperdiet consectetur massa. Maecenas non faucibus eros, sed vulputate quam. Aenean quis ipsum ultrices, commodo dui sit amet, interdum purus. Suspendisse sit amet condimentum massa, at faucibus purus. Praesent quis ex et purus ultricies dictum. Phasellus eu tempus erat. Sed interdum, risus pulvinar consequat malesuada, felis libero tristique neque, at sollicitudin libero quam sit amet sem. Donec at libero aliquam arcu rhoncus dictum sit amet et leo. Vestibulum aliquam rutrum dolor, vitae cursus nisl facilisis eu. Curabitur ut mi rhoncus arcu tristique elementum ac mattis sem. Pellentesque id mattis augue, nec euismod nisl. Donec tristique id ex non gravida. Nulla eget suscipit lectus, non dignissim dui.
+  published_at: 2024-04-03 08:42:25
+  comments_count: 0
