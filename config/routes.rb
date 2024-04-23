@@ -15,6 +15,19 @@ Rails.application.routes.draw do
 
   resources :posts, only: %i[ index show ]
 
+  namespace :benchmarking do
+    post "read_heavy"
+    post "write_heavy"
+    post "balanced"
+    post "post_create"
+    post "comment_create"
+    post "post_destroy"
+    post "comment_destroy"
+    post "post_show"
+    post "posts_index"
+    post "user_show"
+  end
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
