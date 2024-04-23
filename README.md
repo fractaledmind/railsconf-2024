@@ -14,6 +14,8 @@ RAILS_ENV=production bin/setup
 
 ## Details
 
+The application is a basic "Hacker News" style app with `User`s, `Post`s, and `Comment`s. The seeds file will create ~100 users, ~1,000 posts, and ~10 comments per post. Every user has the same password: `password`, so you can sign in as any user to test the app.
+
 This application runs on Ruby 3.2.1, Rails `main`, and SQLite 3.45.3 (gem version 2.0.1).
 
 It was created using the following command:
@@ -32,7 +34,23 @@ rails new railsconf-2024 \
 
 So it uses [`propshaft`](https://github.com/rails/propshaft) for asset compilation, [`esbuild`](https://esbuild.github.io) for JavaScript bundling, and [`tailwind`](https://tailwindcss.com) for CSS.
 
-The application is a basic "Hacker News" style app with `User`s, `Post`s, and `Comment`s. The seeds file will create ~100 users, ~1,000 posts, and ~10 comments per post. Every user has the same password: `password`, so you can sign in as any user to test the app.
+To demonstrate how to control the actual compilation of SQLite, this application sets the `cflags` for the SQLite executable. The `sqlite3-ruby` gem allows us to control the compilation flags used to compile the SQLite executable. We can set the compilation flags via the `BUNDLE_BUILD__SQLITE3` environment variable set in the `.bundle/config` file. The [SQLite docs recommend 12 flags](https://www.sqlite.org/compile.html#recommended_compile_time_options) for a 5% improvement. The `sqlite3-ruby` gem needs some of the features recommended to be omitted, and some are useful for Rails apps. These 7 flags are my recommendation for a Rails app, and can be set using the following command:
+
+```sh
+bundle config set build.sqlite3 \
+    "--with-sqlite-cflags='
+       -DSQLITE_DQS=0
+       -DSQLITE_THREADSAFE=0
+       -DSQLITE_DEFAULT_MEMSTATUS=0
+       -DSQLITE_LIKE_DOESNT_MATCH_BLOBS
+       -DSQLITE_MAX_EXPR_DEPTH=0
+       -DSQLITE_OMIT_SHARED_CACHE
+       -DSQLITE_USE_ALLOCA'"
+```
+
+Typically, the `.bundle/config` file is removed from source control, but we add it back to make this app more portable. Note, however, that this does restrict individual configuration of Bundler.
+
+Finally, in order to ensure that SQLite is compiled from source, we need to specify in the `Gemfile` that the SQLite gem should use the `ruby` platform version.
 
 ## Load Testing
 
