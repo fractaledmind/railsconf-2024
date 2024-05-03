@@ -147,6 +147,19 @@ GEM
       railties (>= 6.0.0)
     json (2.7.2)
     language_server-protocol (3.17.0.3)
+    litestream (0.10.0)
+      logfmt (>= 0.0.10)
+      sqlite3
+    litestream (0.10.0-arm64-darwin)
+      logfmt (>= 0.0.10)
+      sqlite3
+    litestream (0.10.0-x86_64-darwin)
+      logfmt (>= 0.0.10)
+      sqlite3
+    litestream (0.10.0-x86_64-linux)
+      logfmt (>= 0.0.10)
+      sqlite3
+    logfmt (0.0.10)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -158,6 +171,11 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
+    minio (0.4.0)
+    minio (0.4.0-aarch64-linux)
+    minio (0.4.0-arm64-darwin)
+    minio (0.4.0-x86_64-darwin)
+    minio (0.4.0-x86_64-linux)
     minitest (5.21.2)
     msgpack (1.7.2)
     net-imap (0.4.10)
@@ -325,6 +343,8 @@ DEPENDENCIES
   debug
   faker (~> 3.3)
   jsbundling-rails
+  litestream (~> 0.10.0)
+  minio (~> 0.4.0)
   propshaft
   puma (>= 5.0)
   rails!

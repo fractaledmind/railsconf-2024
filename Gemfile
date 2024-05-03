@@ -65,3 +65,7 @@ gem "browser", "~> 5.3"
 gem "faker", "~> 3.3"
 
 gem "activerecord-enhancedsqlite3-adapter", "~> 0.8.0"
+
+gem "litestream", "~> 0.10.0"
+
+gem "minio", "~> 0.4.0"
