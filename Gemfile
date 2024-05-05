@@ -66,6 +66,6 @@ gem "faker", "~> 3.3"
 
 gem "activerecord-enhancedsqlite3-adapter", "~> 0.8.0"
 
-gem "litestream", "~> 0.10.0"
+gem "litestream", "~> 0.10.1"
 
 gem "minio", "~> 0.4.0"
