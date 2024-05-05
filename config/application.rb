@@ -33,6 +33,10 @@ module LoremNews
       html_tag.html_safe
     end
 
+    # Use Solid Queue as the Active Job backend
+    config.active_job.queue_adapter = :solid_queue
+    config.solid_queue.connects_to = { database: { writing: :queue } }
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
