@@ -69,3 +69,7 @@ gem "activerecord-enhancedsqlite3-adapter", "~> 0.8.0"
 gem "litestream", "~> 0.10.1"
 
 gem "minio", "~> 0.4.0"
+
+gem "solid_queue", github: "rails/solid_queue", branch: "main"
+
+gem "mission_control-jobs", "~> 0.2.1"
