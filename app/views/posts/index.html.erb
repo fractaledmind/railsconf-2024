@@ -11,7 +11,11 @@
       <tbody>
         <% @posts.each do |post| %>
           <tr class="*:px-4 *:py-2">
-            <td><%= render post %></td>
+            <td>
+              <% cache post do %>
+                <%= render post %>
+              <% end %>
+            </td>
             <td class="flex justify-end gap-2">
               <% if post.user == Current.user %>
                 <%= link_to "Edit", edit_post_path(post), class: "border border-black text-black bg-white py-1 px-2 cursor-pointer hover:bg-black hover:text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-blue-500" %>
