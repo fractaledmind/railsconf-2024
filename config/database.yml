@@ -15,7 +15,7 @@ default: &default
 # DATABASE CONFIGURATIONS
 primary: &primary
   <<: *default
-  database: storage/<%= Rails.env %>.sqlite3
+  database: storage/<%= `git branch --show-current`.chomp || "development" %>.sqlite3
   extensions:
     - nalgeon/uuid
 
