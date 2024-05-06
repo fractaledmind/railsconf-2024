@@ -1,0 +1,172 @@
+#!/bin/bash -e
+
+__usage="
+Checkout and merge SQLite databases
+
+Usage:
+
+    bin/sqlite <command> [options]
+
+The commands are:
+
+    branch        Create a new SQLite database from a source
+    merge         Merge the data from a source database into a target
+"
+
+cmd_help() {
+  echo "$__usage"
+}
+
+__branch_usage="
+The \`branch\` command clones a new SQLite database from a source (defaults to the current git branch name), including schema and data by default.
+
+Usage:
+
+    bin/sqlite branch <target> [source] [arguments]
+
+Arguments:
+    -d, --with-data              Copy the data from the source database into the target
+    -e, --without-data           Only copy the schema from the source database into the target
+
+Examples:
+
+    # Create a new database from the current branch database, with table data copied over
+    $ bin/sqlite branch new.sqlite3
+
+    # Create a new database from a specific database, with table data copied over
+    $ bin/sqlite branch new.sqlite3 old.sqlite3
+
+    # Create a new database from the current branch database, without table data
+    $ bin/sqlite branch new.sqlite3 -e
+"
+
+cmd_branch() {
+  if [ -z "$1" ]; then
+    echo >&2 "Must supply a target database name, e.g. bin/sqlite branch target.sqlite3"
+    exit
+  elif [ "$1" == "--help" ] || [ "$1" == "help" ]; then
+    echo "$__branch_usage"
+    exit
+  fi
+
+  target="$1"
+
+  if [ "$2" == "-d" ] || [ "$2" == "--with-data" ]; then
+    with_data=true
+    source=$(git branch --show-current)
+  elif [ "$2" == "-e" ] || [ "$2" == "--without-data" ]; then
+    with_data=false
+    source=$(git branch --show-current)
+  else
+    source="$2"
+
+    if [ "$3" == "-d" ] || [ "$3" == "--with-data" ]; then
+      with_data=true
+    elif [ "$3" == "-e" ] || [ "$3" == "--without-data" ]; then
+      with_data=false
+    else
+      # we clone data by default
+      with_data=true
+    fi
+  fi
+
+  # clone the schema of $source into a new database file, called $target
+  db_branch $target $source
+
+  # if $with_data is true, copy the data from $source into $target
+  if "$with_data"; then db_merge $target $source; fi
+}
+
+db_branch() {
+  target="$1"
+  source="$2"
+
+  sqlite3 "$source" ".schema --nosys" | sqlite3 "$target"
+}
+
+
+__merge_usage="
+The \`merge\` command copies table data from a source (defaults to the current git branch name) to the target.
+
+Usage:
+
+    bin/sqlite merge <target> [source]
+
+Examples:
+
+    # Copy table data from the current branch database into a new database
+    $ bin/sqlite merge new.sqlite3
+
+    # Copy table data from a specific database into a new database
+    $ bin/sqlite merge new.sqlite3 old.sqlite3
+"
+cmd_merge() {
+  if [ -z "$1" ]; then
+    echo >&2 "Must supply a target database name, e.g. bin/sqlite merge target"
+    exit
+  elif [ "$1" == "--help" ] || [ "$1" == "help" ]; then
+    echo "$__merge_usage"
+    exit
+  fi
+
+  target="$1"
+
+  if [ -z "$2" ]; then
+    source=$(git branch --show-current)
+  else
+    source="$2"
+  fi
+
+  db_merge $target $source
+}
+
+db_merge() {
+  target="$1"
+  source="$2"
+
+  # Attach merging database to base database
+  merge_sql="ATTACH DATABASE '$source' AS merging; BEGIN TRANSACTION;"
+  # Loop through each table in merging database
+  for table_name in $(sqlite3 $source "SELECT name FROM sqlite_master WHERE type = 'table';")
+  do
+    columns=$(sqlite3 $source "SELECT name FROM pragma_table_info('$table_name');" | tr '\n' ',' | sed 's/.$//')
+    # Merge table data into target database, ignoring any duplicate entries
+    merge_sql+=" INSERT OR IGNORE INTO $table_name ($columns) SELECT $columns FROM merging.$table_name;"
+  done
+  merge_sql+=" COMMIT TRANSACTION; DETACH DATABASE merging;"
+
+  sqlite3 "$target" "$merge_sql"
+}
+
+# -----------------------------------------------------------------------------
+
+cmd="${1:-help}"
+
+# bin/sqlite branch target
+# bin/sqlite branch target source
+# bin/sqlite branch target --with-data
+# bin/sqlite branch target source --with-data
+# bin/sqlite branch target -d
+# bin/sqlite branch target source -d
+# bin/sqlite branch target --without-data
+# bin/sqlite branch target source --without-data
+# bin/sqlite branch target -e
+# bin/sqlite branch target source -e
+if [[ "$cmd" == "branch" ]]; then
+  cmd_branch "${@:2}"
+
+# bin/sqlite merge target
+# bin/sqlite merge target source
+elif [[ "$cmd" == "merge" ]]; then
+  cmd_merge "${@:2}"
+
+# bin/sqlite help
+# bin/sqlite --help
+elif [ "$cmd" == "help" ] || [ "$cmd" == "--help" ]; then
+  echo "$__usage"
+  exit
+
+else
+  echo >&2 "ERROR unknown command \`$cmd\`, use one of \`branch\` or \`merge\`"
+  exit
+fi
