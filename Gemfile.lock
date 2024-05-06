@@ -305,6 +305,13 @@ GEM
       activejob (>= 7)
       activerecord (>= 7)
       railties (>= 7)
+    solid_errors (0.4.2)
+      actionmailer (~> 7.0)
+      actionpack (~> 7.0)
+      actionview (~> 7.0)
+      activerecord (~> 7.0)
+      activesupport (~> 7.0)
+      railties (~> 7.0)
     sqlite3 (2.0.1-aarch64-linux-gnu)
     sqlite3 (2.0.1-aarch64-linux-musl)
     sqlite3 (2.0.1-arm-linux-gnu)
@@ -382,6 +389,7 @@ DEPENDENCIES
   rubocop-rails-omakase
   selenium-webdriver
   solid_cache (~> 0.6.0)
+  solid_errors (~> 0.4.2)
   solid_queue!
   sqlite3 (>= 2.0)
   sqlpkg (~> 0.2.3.1)
