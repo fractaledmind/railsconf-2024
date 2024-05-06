@@ -77,3 +77,5 @@ gem "mission_control-jobs", "~> 0.2.1"
 gem "solid_cache", "~> 0.6.0"
 
 gem "sqlpkg", "~> 0.2.3.1"
+
+gem "solid_errors", "~> 0.4.2"
