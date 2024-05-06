@@ -123,7 +123,7 @@ GEM
       msgpack (~> 1.2)
     brakeman (6.1.2)
       racc
-    browser (5.3.1)
+    browser (6.0.0)
     builder (3.2.4)
     capybara (3.40.0)
       addressable
@@ -363,7 +363,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   brakeman
-  browser (~> 5.3)
+  browser (~> 6.0)
   capybara
   cssbundling-rails
   debug
