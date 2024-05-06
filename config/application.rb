@@ -37,6 +37,12 @@ module LoremNews
     config.active_job.queue_adapter = :solid_queue
     config.solid_queue.connects_to = { database: { writing: :queue } }
 
+    # Use a separate database for error monitoring
+    config.solid_errors.connects_to = { database: { writing: :errors } }
+    config.solid_errors.send_emails = true
+    config.solid_errors.email_from = "errors@railsconf-2024.com"
+    config.solid_errors.email_to = "devs@railsconf-2024.com"
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

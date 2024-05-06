@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
 
     mount MissionControl::Jobs::Engine, at: "/jobs"
+    mount SolidErrors::Engine, at: "/errors"
   end
 
   resources :posts, only: %i[ index show ]
