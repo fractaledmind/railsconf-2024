@@ -49,7 +49,7 @@ class BenchmarkingController < ApplicationController
 
   def comment_create
     @post = Post.where("id >= ?", rand(Post.minimum(:id)..Post.maximum(:id))).limit(1).first
-    comment = Comment.create!(user: @user, post: post, body: "Comment #{request.uuid}")
+    comment = Comment.create!(user: @user, post: @post, body: "Comment #{request.uuid}")
     render "posts/show", status: :ok
   end
 
