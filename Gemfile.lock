@@ -132,11 +132,11 @@ GEM
       reline (>= 0.3.8)
     drb (2.2.1)
     erubi (1.13.0)
-    faker (3.4.2)
+    faker (3.5.1)
       i18n (>= 1.8.11, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
     irb (1.14.0)
@@ -322,7 +322,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
-  faker (~> 3.4)
+  faker (~> 3.5)
   jsbundling-rails
   propshaft
   puma (>= 5.0)

@@ -62,4 +62,4 @@ end
 
 gem "browser", "~> 5.3"
 
-gem "faker", "~> 3.4"
+gem "faker", "~> 3.5"
