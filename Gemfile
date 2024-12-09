@@ -60,6 +60,6 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "browser", "~> 5.3"
+gem "browser", "~> 6.2"
 
 gem "faker", "~> 3.5"
